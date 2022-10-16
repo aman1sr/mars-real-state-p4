@@ -76,4 +76,5 @@ dependencies {
 
     // Retrofit with Moshi Converter
     implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+    implementation 'androidx.leanback:leanback:1.0.0'
 }

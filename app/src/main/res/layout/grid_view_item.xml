@@ -8,8 +8,8 @@
 
     <data>
         <variable
-            name="viewModal"
-            type="com.example.android.marsrealestate.overview.OverviewViewModel" />
+            name="property"
+            type="com.example.android.marsrealestate.network.MarsProperty" />
     </data>
 
     <ImageView
@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="170dp"
 
-        imageUrl="@{viewModal.property.imgSrcUrl}"
+        imageUrl="@{property.imgSrcUrl}"
 
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
