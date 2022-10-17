@@ -1,4 +1,3 @@
-
 Introduction
 ------------
 
@@ -16,4 +15,5 @@ adapters, and [Navigation](https://developer.android.com/topic/libraries/archite
 with the SafeArgs plugin for parameter passing between fragments.
 
 ## What New 
-- 
+- Adapter class of PhotoGridAdapter
+- Binding Adapter

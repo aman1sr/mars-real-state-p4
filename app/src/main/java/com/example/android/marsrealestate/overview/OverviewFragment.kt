@@ -49,10 +49,12 @@ class OverviewFragment : Fragment() {
 
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
         // Giving the binding access to the OverviewViewModel
-        binding.viewModal = viewModel
+        binding.viewModel = viewModel
+        
+        binding.photosGrid.adapter = PhotoGridAdapter()
 
         setHasOptionsMenu(true)
         return binding.root
