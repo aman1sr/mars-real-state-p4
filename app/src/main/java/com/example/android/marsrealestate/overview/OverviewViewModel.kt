@@ -39,14 +39,18 @@ class OverviewViewModel : ViewModel() {
     }
 
     /**
+     * calling the Retrofit service
+     * using coroutines with exception handling, instead of using callbacks
+     *
      * Sets the value of the response LiveData to the Mars API status or the successful number of
      * Mars properties retrieved.
      */
     private fun getMarsRealEstateProperties() {
         viewModelScope.launch {
             try {
-                    _properties.value = MarsApi.retrofitService.getProperties()
-                    _status.value = MarsApiStatus.DONE
+                    _properties.value = MarsApi.retrofitService.getProperties()  // Calling getProperties() from the MarsApi service creates and starts the network call on a background thread..
+
+                _status.value = MarsApiStatus.DONE
 
             } catch (e: Exception) {
                 _status.value = MarsApiStatus.ERROR
