@@ -30,13 +30,16 @@ class OverviewViewModel : ViewModel() {
     get() = _properties
 
 
+    private val _navigateToSelectedProperty = MutableLiveData<MarsProperty>()
+    val navigateToSelectedProperty: LiveData<MarsProperty>
+    get() = _navigateToSelectedProperty
 
 
     /**
      * Call getMarsRealEstateProperties() on init so we can display status immediately.
      */
     init {
-        getMarsRealEstateProperties(MarsApiFilter.SHOW_ALL)
+        getMarsRealEstateProperties(MarsApiFilter.SHOW_ALL)     // by Def , it shows all
     }
 
     /**
@@ -49,8 +52,9 @@ class OverviewViewModel : ViewModel() {
     private fun getMarsRealEstateProperties(filter: MarsApiFilter) {
         viewModelScope.launch {
             try {
-                    _properties.value = MarsApi.retrofitService.getProperties(filter.value)  // Calling getProperties() from the MarsApi service creates and starts the network call on a background thread..
 
+                        // Calling getProperties() from the MarsApi service creates and starts the network call on a background thread..
+                _properties.value = MarsApi.retrofitService.getProperties(filter.value)
                 _status.value = MarsApiStatus.DONE
 
             } catch (e: Exception) {
@@ -59,7 +63,16 @@ class OverviewViewModel : ViewModel() {
         }
     }
 
-    fun updateFilter(filter: MarsApiFilter) {
+    fun updateFilter(filter: MarsApiFilter) {       // this f() called from OverViewFrg , when Manually seleted from  the top Menu
         getMarsRealEstateProperties(filter)
     }
+
+    fun displayPropertyDetails(marsProperty: MarsProperty) {
+        _navigateToSelectedProperty.value = marsProperty
+    }
+
+    fun displayPropertyDetailsComplete() {
+        _navigateToSelectedProperty.value = null
+    }
 }
+
